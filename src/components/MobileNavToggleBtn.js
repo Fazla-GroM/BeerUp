@@ -1,13 +1,17 @@
 import React from "react"
 import { css } from "@emotion/core"
-import { useTheme } from "emotion-theming"
+import { colorPrimary } from "../theme"
+import { useDispatch, useSelector } from "react-redux"
+import { setIsMobileNavOpen } from "../redux/globals/globalsActions"
+import { selectIsMobileNavOpen } from "../redux/globals/globalsSelectors"
 
 const MobileNavToggleBtn = () => {
-  const theme = useTheme()
+  const dispatch = useDispatch()
+  const isMobileNavOpen = useSelector(selectIsMobileNavOpen)
 
   const cssNavBtn = css({
-    width: "3.5rem",
-    height: "3.5rem",
+    width: "3.2rem",
+    height: "3.2rem",
     position: "relative",
     display: "flex",
     alignItems: "center",
@@ -17,34 +21,49 @@ const MobileNavToggleBtn = () => {
     cursor: "pointer",
     outline: "none",
 
-    "&:hover div": {
-      "&:first-of-type": {
-        top: "5%",
-      },
-      "&:last-of-type": {
-        bottom: "5%",
-      },
-    },
+    // "&:hover div": {
+    //   "&:first-of-type": {
+    //     top: "5%",
+    //   },
+    //   "&:last-of-type": {
+    //     bottom: "5%",
+    //   },
+    // },
 
     "& div": {
       position: "absolute",
       width: "100%",
       height: ".4rem",
-      backgroundColor: theme.colors.primary,
+      backgroundColor: colorPrimary,
       borderRadius: "10rem",
       transition: "all .4s",
 
       "&:first-of-type": {
-        top: "15%",
+        top: isMobileNavOpen ? "50%" : "5%",
+        transform: isMobileNavOpen
+          ? "translateY(-50%) rotate(-45deg)"
+          : "translateY(0) rotate(0)",
       },
+
+      "&:nth-of-type(2)": {
+        backgroundColor: isMobileNavOpen ? "transparent" : colorPrimary,
+      },
+
       "&:last-of-type": {
-        bottom: "15%",
+        bottom: isMobileNavOpen ? "50%" : "5%",
+        transform: isMobileNavOpen
+          ? "translateY(50%) rotate(45deg)"
+          : "translateY(0) rotate(0)",
       },
     },
   })
 
   return (
-    <button css={cssNavBtn} aria-label="Toggle Mobile Navigation">
+    <button
+      onClick={() => dispatch(setIsMobileNavOpen(!isMobileNavOpen))}
+      css={cssNavBtn}
+      aria-label="Toggle Mobile Navigation"
+    >
       <div></div>
       <div></div>
       <div></div>
