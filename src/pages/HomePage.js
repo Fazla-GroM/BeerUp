@@ -12,6 +12,8 @@ const HomePage = () => {
   const cssNegativeMargin = css({
     marginTop: "-2rem",
   })
+
+  console.log("HOME PAGE")
   return (
     <>
       <HeroBox

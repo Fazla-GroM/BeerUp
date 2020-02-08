@@ -20,6 +20,8 @@ const SignUpPage = () => {
     left: "50%",
     transform: "translateX(-50%) rotate(180deg)",
   })
+
+  console.log("SIGNUP")
   return (
     <>
       <HeroBox title="Join Up!" />

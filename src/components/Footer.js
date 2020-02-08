@@ -59,11 +59,13 @@ const Footer = () => {
     },
 
     "& a": {
-      "&:hover svg": {
-        color: colorPrimary,
-      },
+      padding: "1rem",
+
       "& svg": {
-        color: fontWhitePrimary,
+        transition: "all .4s",
+      },
+      "&:hover svg": {
+        transform: "scale(1.2)",
       },
     },
   })

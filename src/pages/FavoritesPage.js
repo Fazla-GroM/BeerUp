@@ -7,6 +7,8 @@ const FavoritesPage = () => {
   const cssNegativeMargin = css({
     marginTop: "-10rem",
   })
+
+  console.log("FAVORITES")
   return (
     <>
       <HeroBox title="Favourites" />
