@@ -5,7 +5,8 @@ import { boxShadow, backgroundWhite } from "../theme"
 const BeerCard = () => {
   const cssCard = css({
     width: "100%",
-    height: "10rem",
+    minHeight: "10rem",
+    height: "100%",
     backgroundColor: "hotpink",
     boxShadow: boxShadow,
     borderRadius: "4px",

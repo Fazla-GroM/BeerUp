@@ -5,6 +5,7 @@ import {
   fontBlackSecondary,
   fontBlackDisabled,
   colorSecondary,
+  mq,
 } from "../theme"
 import crateImg from "../assets/crate.svg"
 
@@ -28,6 +29,7 @@ const TabMenu = ({ data, activeTabIndex }) => {
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
+    width: "100%",
   })
 
   const cssBtnList = css({
@@ -36,13 +38,24 @@ const TabMenu = ({ data, activeTabIndex }) => {
     justifyContent: "center",
     width: "100%",
 
-    "& li": {},
+    [mq[0]]: {
+      justifyContent: "flex-start",
+    },
+
+    "& li": {
+      "&:not(:last-of-type)": {
+        marginRight: "3rem",
+      },
+    },
   })
 
   const cssTabContent = css({
     width: "100%",
-    height: "40rem",
-    padding: "2rem 3rem",
+    padding: "2rem 1.5rem",
+
+    [mq[0]]: {
+      padding: "2rem 0",
+    },
   })
 
   const cssCrate = css({
@@ -50,8 +63,7 @@ const TabMenu = ({ data, activeTabIndex }) => {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    width: "100%",
-    height: "100%",
+    height: "40rem",
   })
 
   const cssQuote = css({
@@ -107,7 +119,7 @@ const TabButton = ({ label, isActive, handleTabs, index }) => {
     color: isActive ? fontBlackPrimary : fontBlackDisabled,
     cursor: "pointer",
     outline: "none",
-    padding: "1rem 2rem",
+    padding: "1rem 0",
     borderBottom: `4px solid ${isActive ? colorSecondary : "transparent"}`,
     transition: "all 0.4s",
   })

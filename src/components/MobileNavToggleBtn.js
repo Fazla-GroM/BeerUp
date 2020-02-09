@@ -1,6 +1,6 @@
 import React from "react"
 import { css } from "@emotion/core"
-import { colorPrimary } from "../theme"
+import { colorPrimary, mq } from "../theme"
 import { useDispatch, useSelector } from "react-redux"
 import { setIsMobileNavOpen } from "../redux/globals/globalsActions"
 import { selectIsMobileNavOpen } from "../redux/globals/globalsSelectors"
@@ -21,14 +21,9 @@ const MobileNavToggleBtn = () => {
     cursor: "pointer",
     outline: "none",
 
-    // "&:hover div": {
-    //   "&:first-of-type": {
-    //     top: "5%",
-    //   },
-    //   "&:last-of-type": {
-    //     bottom: "5%",
-    //   },
-    // },
+    [mq[0]]: {
+      display: "none",
+    },
 
     "& div": {
       position: "absolute",

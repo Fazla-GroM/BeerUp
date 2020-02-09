@@ -7,6 +7,7 @@ import {
   fontWhiteSecondary,
   colorPrimary,
   colorPrimaryTransparent,
+  mq,
 } from "../theme"
 import Logo from "./Logo"
 import { ReactComponent as PininterestLogo } from "../assets/pininterest.svg"
@@ -16,7 +17,30 @@ import { ReactComponent as TwitterLogo } from "../assets/twitter.svg"
 
 const Footer = () => {
   const cssFooter = css({
+    maxWidth: "1336px",
     padding: "4rem 1.5rem 0 1.5rem",
+    margin: "0 auto",
+  })
+
+  const cssTopHolder = css({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+
+    [mq[0]]: {
+      alignItems: "flex-start",
+      justifyContent: "space-between",
+      flexDirection: "row",
+      padding: "0 2rem",
+    },
+  })
+
+  const cssTopGroupOne = css({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
   })
 
   const cssNav = css({
@@ -25,6 +49,10 @@ const Footer = () => {
     justifyContent: "center",
     flexDirection: "column",
     padding: "4rem 0 2rem 0",
+
+    [mq[0]]: {
+      alignItems: "flex-start",
+    },
 
     "& a": {
       color: fontWhiteSecondary,
@@ -48,8 +76,12 @@ const Footer = () => {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    width: "100%",
+    //width: "100%",
     padding: "4rem 0",
+
+    [mq[0]]: {
+      padding: "0 0 4rem 0",
+    },
 
     "& li, & a": {
       display: "flex",
@@ -59,7 +91,7 @@ const Footer = () => {
     },
 
     "& a": {
-      padding: "1rem",
+      padding: "1rem 3rem",
 
       "& svg": {
         transition: "all .4s",
@@ -80,43 +112,47 @@ const Footer = () => {
 
   return (
     <footer css={cssFooter}>
-      <Logo />
-      <nav css={cssNav}>
-        {mainLinks.map(({ path, name, isExact }) => {
-          return (
-            <NavLink
-              key={path}
-              exact={isExact ? isExact : false}
-              to={path}
-              activeStyle={{ color: colorPrimary }}
-            >
-              {name}
-            </NavLink>
-          )
-        })}
-      </nav>
-      <ul css={cssSocialList}>
-        <li>
-          <a href="" target="_blank" rel="noopener noreferrer">
-            <FacebookLogo />
-          </a>
-        </li>
-        <li>
-          <a href="" target="_blank" rel="noopener noreferrer">
-            <TwitterLogo />
-          </a>
-        </li>
-        <li>
-          <a href="" target="_blank" rel="noopener noreferrer">
-            <LinkedInLogo />
-          </a>
-        </li>
-        <li>
-          <a href="" target="_blank" rel="noopener noreferrer">
-            <PininterestLogo />
-          </a>
-        </li>
-      </ul>
+      <div css={cssTopHolder}>
+        <div css={cssTopGroupOne}>
+          <Logo />
+          <nav css={cssNav}>
+            {mainLinks.map(({ path, name, isExact }) => {
+              return (
+                <NavLink
+                  key={path}
+                  exact={isExact ? isExact : false}
+                  to={path}
+                  activeStyle={{ color: colorPrimary }}
+                >
+                  {name}
+                </NavLink>
+              )
+            })}
+          </nav>
+        </div>
+        <ul css={cssSocialList}>
+          <li>
+            <a href="" target="_blank" rel="noopener noreferrer">
+              <FacebookLogo />
+            </a>
+          </li>
+          <li>
+            <a href="" target="_blank" rel="noopener noreferrer">
+              <TwitterLogo />
+            </a>
+          </li>
+          <li>
+            <a href="" target="_blank" rel="noopener noreferrer">
+              <LinkedInLogo />
+            </a>
+          </li>
+          <li>
+            <a href="" target="_blank" rel="noopener noreferrer">
+              <PininterestLogo />
+            </a>
+          </li>
+        </ul>
+      </div>
       <div css={cssCopy}>&copy;2020 All rights reserved</div>
     </footer>
   )

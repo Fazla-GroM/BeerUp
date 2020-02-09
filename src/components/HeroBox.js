@@ -3,6 +3,7 @@ import { css } from "@emotion/core"
 import { useTheme } from "emotion-theming"
 import SectionContainer from "./SectionContainer"
 import crateImg from "../assets/crate-ilustration.svg"
+import { mq } from "../theme"
 
 const HeroBox = ({ isHomePage, subtitle, title }) => {
   const cssHeroBox = css({
@@ -14,6 +15,10 @@ const HeroBox = ({ isHomePage, subtitle, title }) => {
 
   const cssImage = css({
     width: "16rem",
+
+    [mq[0]]: {
+      width: "40rem",
+    },
   })
 
   return (
@@ -37,8 +42,17 @@ const Title = ({ isHomePage, children }) => {
     fontWeight: "700",
     textAlign: "center",
     fontSize: "4rem",
-    padding: "0 2rem",
-    marginBottom: "4rem",
+    lineHeight: "4rem",
+    maxWidth: "30rem",
+
+    marginBottom: "5rem",
+    display: "block",
+    [mq[0]]: {
+      fontSize: "6rem",
+      maxWidth: "40rem",
+      //padding: "0 16rem",
+      lineHeight: "7rem",
+    },
 
     "& span": {
       display: "block",

@@ -4,6 +4,7 @@ import {
   fontBlackDisabled,
   fontBlackPrimary,
   backgroundWhite,
+  mq,
 } from "../../theme"
 
 const FormTextInput = ({ id, placeholder, type }) => {
@@ -14,6 +15,10 @@ const FormTextInput = ({ id, placeholder, type }) => {
     alignItems: "center",
     justifyContent: "flex-start",
     marginBottom: "2rem",
+
+    [mq[0]]: {
+      width: "60%",
+    },
   })
 
   const cssLabel = css({

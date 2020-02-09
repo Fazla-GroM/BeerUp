@@ -1,6 +1,6 @@
 import React from "react"
 import { css } from "@emotion/core"
-import { backgroundWhite } from "../theme"
+import { backgroundWhite, mq } from "../theme"
 import HeroBox from "../components/HeroBox"
 import SectionContainer from "../components/SectionContainer"
 import SignUpForm from "../components/signUpForm/SignUpForm"
@@ -12,6 +12,10 @@ const SignUpPage = () => {
     padding: "4rem 1rem 8rem 1rem",
     backgroundColor: backgroundWhite,
     position: "relative",
+
+    [mq[0]]: {
+      marginTop: "-25rem",
+    },
   })
 
   const cssBeerCap = css({

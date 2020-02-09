@@ -4,17 +4,28 @@ import SectionContainer from "./SectionContainer"
 import Swiper from "react-id-swiper"
 import TabMenu from "./TabMenu"
 import BeerCard from "./BeerCard"
-import { backgroundWhite, fontBlackPrimary } from "../theme"
+import { backgroundWhite, fontBlackPrimary, mq } from "../theme"
 import capImage from "../assets/cap.svg"
 import "swiper/css/swiper.css"
 
 const BeerSelector = ({ beerListTitle, className }) => {
   const cssBeerSelector = css({
     backgroundColor: backgroundWhite,
-    //marginTop: "-2rem",
-    display: "flex",
-    flexDirection: "column",
+    marginTop: "-2rem",
     padding: "4rem 0",
+
+    [mq[0]]: {
+      display: "flex",
+      alignItems: "flex-start",
+      justifyContent: "center",
+      padding: "4rem 0",
+    },
+
+    ".swiper-container": {
+      [mq[0]]: {
+        display: "none !important",
+      },
+    },
 
     ".swiper-wrapper": {
       boxSizing: "border-box",
@@ -32,14 +43,45 @@ const BeerSelector = ({ beerListTitle, className }) => {
     fontSize: "2.4rem",
     textAlign: "center",
     textTransform: "capitalize",
+    [mq[0]]: {
+      textAlign: "left",
+    },
   })
 
   const cssBeerList = css({
-    width: "100%",
+    ".grid": {
+      display: "none",
+    },
+    [mq[0]]: {
+      padding: "0 1.5rem 0 3rem",
+      flex: "1",
+      ".grid": {
+        paddingTop: "2rem",
+        display: "grid",
+        gridTemplateRows: "1fr 1fr 1fr 1fr 1fr",
+        gridTemplateColumns: "1fr 1fr",
+        gridColumnGap: "1.5rem",
+        gridRowGap: "1.5rem",
+      },
+    },
+    [mq[2]]: {
+      ".grid": {
+        gridTemplateRows: "1fr 1fr 1fr 1fr 1fr",
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+      },
+      flex: "2",
+    },
   })
 
   const cssCrates = css({
-    width: "100%",
+    [mq[0]]: {
+      flex: "1",
+      padding: "0 3rem 0 1.5rem",
+    },
+
+    [mq[2]]: {
+      flex: "1",
+    },
   })
 
   const cssCap = css({
@@ -65,10 +107,11 @@ const BeerSelector = ({ beerListTitle, className }) => {
           <div>
             <BeerCard />
           </div>
-          <div>
-            <BeerCard />
-          </div>
         </Swiper>
+        <div className="grid">
+          <BeerCard /> <BeerCard /> <BeerCard /> <BeerCard /> <BeerCard />{" "}
+          <BeerCard /> <BeerCard /> <BeerCard /> <BeerCard />
+        </div>
       </div>
       <div css={cssCrates}>
         <h3 css={cssTitle}>Crate</h3>

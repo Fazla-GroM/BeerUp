@@ -31,6 +31,14 @@ export const fontWhitePrimary = "rgba(255,255,255, 87%)"
 export const fontWhiteSecondary = "rgba(255,255,255, 60%)"
 export const fontWhiteDisabled = "rgba(255,255,255, 38%)"
 
+//MEDIA QUERIES
+export const breakpoints = [
+  "only screen and (min-width: 768px)",
+  "only screen and (min-width: 996px)",
+  "only screen and (min-width: 1200px)",
+]
+export const mq = breakpoints.map(bp => `@media ${bp}`)
+
 export const backgroundColors = {
   white: "#F7F7F7",
   black: "#121212",

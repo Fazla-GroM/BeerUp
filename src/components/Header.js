@@ -4,12 +4,14 @@ import MobileNavToggleBtn from "../components/MobileNavToggleBtn"
 import Logo from "./Logo"
 import backgroundPattern from "../assets/pattern.svg"
 import { backgroundBlack } from "../theme"
+import Navigation from "./Navigation"
 
 const Header = () => {
   const cssHeader = css({
     position: "fixed",
     top: "0",
-    left: "0",
+    left: "50%",
+    transform: "translateX(-50%)",
     zIndex: "1000",
     maxWidth: "1336px",
     width: "100%",
@@ -26,6 +28,7 @@ const Header = () => {
   return (
     <header css={cssHeader}>
       <Logo />
+      <Navigation />
       <MobileNavToggleBtn />
     </header>
   )

@@ -1,7 +1,7 @@
 import { SET_IS_MOBILE_NAV_OPEN } from "./globalsTypes"
 
 const initialState = {
-  isMobileNavOpen: true,
+  isMobileNavOpen: false,
 }
 
 const globalsReducer = (state = initialState, action) => {

@@ -5,6 +5,7 @@ import {
   fontBlackPrimary,
   fontBlackDisabled,
   boxShadow,
+  mq,
 } from "../../theme"
 import FormSection from "./FormSection"
 import FormTextInput from "./FormTextInput"
@@ -21,6 +22,11 @@ const SignUpForm = () => {
     textAlign: "center",
     textTransform: "capitalize",
     paddingBottom: "4rem",
+
+    [mq[0]]: {
+      maxWidth: "35rem",
+      margin: "0 auto",
+    },
   })
 
   const cssForm = css({
@@ -30,6 +36,11 @@ const SignUpForm = () => {
     borderRadius: "4px",
     padding: "0 1.5rem 2rem 1.5rem",
     position: "relative",
+
+    [mq[0]]: {
+      width: "70%",
+      margin: "0 auto",
+    },
   })
 
   const cssFormBtn = css({
