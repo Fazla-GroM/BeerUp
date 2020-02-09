@@ -34,6 +34,8 @@ const Footer = () => {
       flexDirection: "row",
       padding: "0 2rem",
     },
+
+    [mq[2]]: {},
   })
 
   const cssTopGroupOne = css({
@@ -41,6 +43,13 @@ const Footer = () => {
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
+
+    [mq[2]]: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      width: "100%",
+    },
   })
 
   const cssNav = css({
@@ -54,6 +63,13 @@ const Footer = () => {
       alignItems: "flex-start",
     },
 
+    [mq[2]]: {
+      flexDirection: "row",
+      alignItems: "center",
+      padding: "0",
+      flex: "1",
+    },
+
     "& a": {
       color: fontWhiteSecondary,
       textTransform: "uppercase",
@@ -64,6 +80,11 @@ const Footer = () => {
 
       "&:not(:last-of-type)": {
         marginBottom: "2rem",
+
+        [mq[2]]: {
+          marginBottom: "0",
+          marginRight: "4rem",
+        },
       },
 
       "&:hover": {
@@ -82,6 +103,8 @@ const Footer = () => {
     [mq[0]]: {
       padding: "0 0 4rem 0",
     },
+
+    [mq[2]]: {},
 
     "& li, & a": {
       display: "flex",

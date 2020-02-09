@@ -41,6 +41,10 @@ const SignUpForm = () => {
       width: "70%",
       margin: "0 auto",
     },
+
+    [mq[2]]: {
+      width: "50%",
+    },
   })
 
   const cssFormBtn = css({

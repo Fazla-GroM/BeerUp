@@ -11,6 +11,12 @@ const HeroBox = ({ isHomePage, subtitle, title }) => {
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
+
+    [mq[2]]: {
+      flexDirection: "row",
+      alignItems: "flex-start",
+      justifyContent: "space-around",
+    },
   })
 
   const cssImage = css({
@@ -44,9 +50,9 @@ const Title = ({ isHomePage, children }) => {
     fontSize: "4rem",
     lineHeight: "4rem",
     maxWidth: "30rem",
-
     marginBottom: "5rem",
     display: "block",
+
     [mq[0]]: {
       fontSize: "6rem",
       maxWidth: "40rem",
@@ -54,11 +60,22 @@ const Title = ({ isHomePage, children }) => {
       lineHeight: "7rem",
     },
 
+    [mq[2]]: {
+      textAlign: "left",
+      fontSize: "8rem",
+      lineHeight: "8rem",
+      maxWidth: "50rem",
+    },
+
     "& span": {
       display: "block",
       fontSize: "1.4rem",
       letterSpacing: ".5rem",
       marginBottom: "4rem",
+
+      [mq[2]]: {
+        lineHeight: "1",
+      },
     },
   })
 

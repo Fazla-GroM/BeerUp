@@ -24,6 +24,7 @@ const Button = ({ type, title, islink, path, handleClick, className }) => {
     transition: "all .4s",
     cursor: "pointer",
     border: "none",
+    outline: "none",
 
     "&:hover": {
       backgroundColor: theme.colors.primaryActive,
