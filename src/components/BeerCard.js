@@ -11,6 +11,7 @@ const BeerCard = () => {
     boxShadow: boxShadow,
     borderRadius: "4px",
     backgroundColor: backgroundWhite,
+    flexShrink: "0",
   })
   return <div css={cssCard}></div>
 }

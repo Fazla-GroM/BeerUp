@@ -18,7 +18,7 @@ import { ReactComponent as TwitterLogo } from "../assets/twitter.svg"
 const Footer = () => {
   const cssFooter = css({
     maxWidth: "1336px",
-    padding: "4rem 1.5rem 0 1.5rem",
+    padding: "0 1.5rem",
     margin: "0 auto",
   })
 
@@ -27,29 +27,34 @@ const Footer = () => {
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
+    padding: "4rem 0",
+
+    [mq[0]]: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "flex-start",
+    },
+  })
+
+  const cssGroup = css({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
 
     [mq[0]]: {
       alignItems: "flex-start",
-      justifyContent: "space-between",
-      flexDirection: "row",
-      padding: "0 2rem",
     },
-
-    [mq[2]]: {},
-  })
-
-  const cssTopGroupOne = css({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
 
     [mq[2]]: {
       flexDirection: "row",
-      alignItems: "center",
+      flex: "1",
       justifyContent: "space-between",
-      width: "100%",
     },
+  })
+
+  const cssFooterLogo = css({
+    marginBottom: "2rem",
   })
 
   const cssNav = css({
@@ -57,7 +62,6 @@ const Footer = () => {
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    padding: "4rem 0 2rem 0",
 
     [mq[0]]: {
       alignItems: "flex-start",
@@ -65,9 +69,14 @@ const Footer = () => {
 
     [mq[2]]: {
       flexDirection: "row",
-      alignItems: "center",
-      padding: "0",
-      flex: "1",
+    },
+
+    "& a:not(:last-of-type)": {
+      marginBottom: "2rem",
+
+      [mq[2]]: {
+        marginRight: "3rem",
+      },
     },
 
     "& a": {
@@ -77,15 +86,6 @@ const Footer = () => {
       fontSize: "1.4rem",
       letterSpacing: ".2rem",
       transition: "all .4s",
-
-      "&:not(:last-of-type)": {
-        marginBottom: "2rem",
-
-        [mq[2]]: {
-          marginBottom: "0",
-          marginRight: "4rem",
-        },
-      },
 
       "&:hover": {
         color: colorPrimary,
@@ -97,25 +97,29 @@ const Footer = () => {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    //width: "100%",
-    padding: "4rem 0",
+    marginTop: "4rem",
 
     [mq[0]]: {
-      padding: "0 0 4rem 0",
+      marginTop: "0",
     },
 
-    [mq[2]]: {},
+    [mq[2]]: {
+      flex: ".69",
+      justifyContent: "flex-end",
+    },
+
+    "& li:not(:last-of-type)": {
+      marginRight: "4rem",
+    },
 
     "& li, & a": {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      width: "100%",
+      // width: "100%",
     },
 
     "& a": {
-      padding: "1rem 3rem",
-
       "& svg": {
         transition: "all .4s",
       },
@@ -136,8 +140,8 @@ const Footer = () => {
   return (
     <footer css={cssFooter}>
       <div css={cssTopHolder}>
-        <div css={cssTopGroupOne}>
-          <Logo />
+        <div css={cssGroup}>
+          <Logo css={cssFooterLogo} />
           <nav css={cssNav}>
             {mainLinks.map(({ path, name, isExact }) => {
               return (
@@ -176,6 +180,7 @@ const Footer = () => {
           </li>
         </ul>
       </div>
+
       <div css={cssCopy}>&copy;2020 All rights reserved</div>
     </footer>
   )

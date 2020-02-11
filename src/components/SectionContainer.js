@@ -9,13 +9,13 @@ const SectionContainer = ({ className, children }) => {
     marginLeft: "auto",
     position: "relative",
 
-    [mq[0]]: {
-      maxWidth: "768px",
-    },
+    // [mq[0]]: {
+    //   maxWidth: "768px",
+    // },
 
-    [mq[1]]: {
-      maxWidth: "996px",
-    },
+    // [mq[1]]: {
+    //   maxWidth: "996px",
+    // },
     [mq[2]]: {
       maxWidth: "1336px",
       borderRadius: "4px",

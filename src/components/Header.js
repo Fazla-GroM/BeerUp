@@ -21,8 +21,6 @@ const Header = () => {
     justifyContent: "space-between",
     backgroundColor: backgroundBlack,
     backgroundImage: `url(${backgroundPattern})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
   })
 
   return (

@@ -51,19 +51,19 @@ const TabMenu = ({ data, activeTabIndex }) => {
 
   const cssTabContent = css({
     width: "100%",
-    padding: "2rem 1.5rem",
-
-    [mq[0]]: {
-      padding: "2rem 0",
-    },
+    padding: "2rem 0",
   })
 
   const cssCrate = css({
+    width: "26.4rem",
+    height: "31.7rem",
+    display: "grid",
+    gridTemplateRows: "repeat(5,1fr)",
+    gridTemplateColumns: "repeat(4,1fr)",
     backgroundImage: `url(${crateImg})`,
     backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    height: "40rem",
+    margin: "0 auto",
   })
 
   const cssQuote = css({
@@ -71,12 +71,12 @@ const TabMenu = ({ data, activeTabIndex }) => {
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    color: fontBlackSecondary,
+    color: fontBlackPrimary,
     fontSize: "1.4rem",
 
     "& cite": {
       marginTop: "1.5rem",
-      color: fontBlackDisabled,
+      color: fontBlackSecondary,
     },
   })
 
@@ -95,7 +95,7 @@ const TabMenu = ({ data, activeTabIndex }) => {
         ))}
       </ul>
       <div css={cssTabContent}>
-        <div css={cssCrate}></div>
+        <div title="Empty Beer crate ready to be filled" css={cssCrate}></div>
       </div>
       <blockquote css={cssQuote}>
         Add a beer to have it appear in crate.
@@ -116,10 +116,10 @@ const TabButton = ({ label, isActive, handleTabs, index }) => {
     textTransform: "uppercase",
     fontWeight: "600",
     letterSpacing: ".2rem",
-    color: isActive ? fontBlackPrimary : fontBlackDisabled,
+    color: isActive ? fontBlackPrimary : fontBlackSecondary,
     cursor: "pointer",
     outline: "none",
-    padding: "1rem 0",
+    padding: "0 0 1rem 0",
     borderBottom: `4px solid ${isActive ? colorSecondary : "transparent"}`,
     transition: "all 0.4s",
   })
