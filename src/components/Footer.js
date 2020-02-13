@@ -159,22 +159,42 @@ const Footer = () => {
         </div>
         <ul css={cssSocialList}>
           <li>
-            <a href="" target="_blank" rel="noopener noreferrer">
+            <a
+              href=""
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook Link"
+            >
               <FacebookLogo />
             </a>
           </li>
           <li>
-            <a href="" target="_blank" rel="noopener noreferrer">
+            <a
+              href=""
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter Link"
+            >
               <TwitterLogo />
             </a>
           </li>
           <li>
-            <a href="" target="_blank" rel="noopener noreferrer">
+            <a
+              href=""
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Link"
+            >
               <LinkedInLogo />
             </a>
           </li>
           <li>
-            <a href="" target="_blank" rel="noopener noreferrer">
+            <a
+              href=""
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Pininterest Link"
+            >
               <PininterestLogo />
             </a>
           </li>
