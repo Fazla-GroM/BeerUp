@@ -1,18 +1,15 @@
 import { GET_BEERS } from "./beersTypes"
 import mainApi from "../mainApi"
-import axios from "axios"
-
-console.log({ mainApi })
+import store from "../store"
 
 const BEERS = process.env.BEERS
 
-export const getBeers = pageToFetch => async dispatch => {
+export const getAllBeers = pageToFetch => async dispatch => {
   let result
 
   try {
     result = await mainApi.get(`${BEERS}?=${pageToFetch}`)
 
-    console.log({ result })
     dispatch({
       type: GET_BEERS,
       payload: {

@@ -1,7 +1,7 @@
 import { GET_BEERS } from "./beersTypes"
 
 const INITAL_STATE = {
-  beers: {
+  allBeers: {
     pageToFetch: 1,
     results: [],
   },
@@ -12,9 +12,9 @@ export const beersReducer = (state = INITAL_STATE, action) => {
     case GET_BEERS: {
       return {
         ...state,
-        beers: {
-          pageToFetch: action.pageToFetch,
-          results: [...state.beers.results, ...action.payload.results],
+        allBeers: {
+          pageToFetch: action.payload.pageToFetch,
+          results: [...state.allBeers.results, ...action.payload.results],
         },
       }
     }
