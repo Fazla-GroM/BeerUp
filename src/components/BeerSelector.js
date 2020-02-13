@@ -1,17 +1,43 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { css } from "@emotion/core"
+import { Transition } from "react-transition-group"
+import { backgroundWhite, fontBlackPrimary, mq } from "../theme"
+import { useDispatch, useSelector } from "react-redux"
+import { selectBeerModal } from "../redux/globals/globalsSelectors"
+import {
+  selectCrateOne,
+  selectCrateTwo,
+  selectCrateThree,
+} from "../redux/crates/cratesSelectors"
+import "swiper/css/swiper.css"
 import SectionContainer from "./SectionContainer"
 import Swiper from "react-id-swiper"
 import TabMenu from "./TabMenu"
 import BeerCard from "./BeerCard"
-import { backgroundWhite, fontBlackPrimary, mq } from "../theme"
 import capImage from "../assets/cap.svg"
-import "swiper/css/swiper.css"
 import useMediaQuery from "../hooks/useMediaQuery"
+import BeerModal from "./BeerModal"
 
-const BeerSelector = ({ beerListTitle, className }) => {
+const BeerSelector = ({
+  beerListTitle,
+  className,
+  getBeerListData,
+  selectBeerListData,
+}) => {
   const isMobile = useMediaQuery("(max-width:767px)")
-  console.log({ isMobile })
+  const dispatch = useDispatch()
+  const beerListData = useSelector(selectBeerListData)
+  const beerModal = useSelector(selectBeerModal)
+
+  const getInitialBeers = () => {
+    if (!beerListData.results.length) {
+      dispatch(getBeerListData(beerListData.pageToFetch))
+    }
+  }
+
+  useEffect(() => {
+    getInitialBeers()
+  }, [])
 
   const cssBeerSelector = css({
     backgroundColor: backgroundWhite,
@@ -24,7 +50,7 @@ const BeerSelector = ({ beerListTitle, className }) => {
     },
 
     [mq[2]]: {
-      padding: "6rem 15rem",
+      padding: "6rem 10rem",
     },
 
     ".swiper-container": {
@@ -79,7 +105,9 @@ const BeerSelector = ({ beerListTitle, className }) => {
   })
 
   const cssCrates = css({
-    marginLeft: "5rem",
+    [mq[0]]: {
+      marginLeft: "5rem",
+    },
 
     [mq[2]]: {
       marginLeft: "10rem",
@@ -94,33 +122,42 @@ const BeerSelector = ({ beerListTitle, className }) => {
   })
 
   return (
-    <SectionContainer css={cssBeerSelector} className={className}>
-      <div css={cssBeers}>
-        <h3 css={cssTitle}>{beerListTitle}</h3>
-        {isMobile && (
-          <Swiper {...swiperParams}>
-            {fakeBeers.map(beer => (
-              <div key={beer.id}>
-                <BeerCard />
-              </div>
-            ))}
-          </Swiper>
+    <>
+      <Transition unmountOnExit in={beerModal.isOpen} timeout={{ exit: 400 }}>
+        {state => (
+          <BeerModal
+            transitionStyle={{ ...beerModalTransitionStyles[state] }}
+          />
         )}
-        {!isMobile && (
-          <div css={cssBeerGrid}>
-            {fakeBeers.map(beer => (
-              <BeerCard key={beer.id} />
-            ))}
-          </div>
-        )}
-      </div>
-      <div css={cssCrates}>
-        <h3 css={cssTitle}>Crate</h3>
-        <TabMenu data={fakeData} activeTabIndex={0} />
-      </div>
+      </Transition>
+      <SectionContainer css={cssBeerSelector} className={className}>
+        <div css={cssBeers}>
+          <h3 css={cssTitle}>{beerListTitle}</h3>
+          {isMobile && (
+            <Swiper {...swiperParams}>
+              {beerListData.results.map(beer => (
+                <div key={beer.id}>
+                  <BeerCard data={beer} />
+                </div>
+              ))}
+            </Swiper>
+          )}
+          {!isMobile && (
+            <div css={cssBeerGrid}>
+              {beerListData.results.map(beer => (
+                <BeerCard key={beer.id} data={beer} />
+              ))}
+            </div>
+          )}
+        </div>
+        <div css={cssCrates}>
+          <h3 css={cssTitle}>Crate</h3>
+          <TabMenu data={tabMenuData} activeTabIndex={0} />
+        </div>
 
-      <img css={cssCap} src={capImage} alt="Yellow Beer Cap" />
-    </SectionContainer>
+        <img css={cssCap} src={capImage} alt="Yellow Beer Cap" />
+      </SectionContainer>
+    </>
   )
 }
 
@@ -134,86 +171,37 @@ const swiperParams = {
   rebuildOnUpdate: true,
 }
 
-const fakeData = [
+const tabMenuData = [
   {
-    label: "One",
+    label: "one",
+    selector: selectCrateOne,
   },
   {
-    label: "Two",
+    label: "two",
+    selector: selectCrateTwo,
   },
   {
-    label: "Three",
+    label: "three",
+    selector: selectCrateThree,
   },
 ]
 
-const fakeBeers = [
-  {
-    id: 0,
+const beerModalTransitionStyles = {
+  entering: {
+    opacity: "0",
+    transform: "scale(0)",
   },
-  {
-    id: 1,
+  entered: {
+    opacity: "1",
+    transform: "scale(1)",
   },
-  {
-    id: 2,
+  exiting: {
+    opacity: "0",
+    transform: "scale(0)",
   },
-  {
-    id: 3,
+  exited: {
+    transform: "scale(0)",
+
+    opacity: "0",
   },
-  {
-    id: 4,
-  },
-  {
-    id: 5,
-  },
-  {
-    id: 6,
-  },
-  {
-    id: 7,
-  },
-  {
-    id: 8,
-  },
-  {
-    id: 9,
-  },
-  {
-    id: 10,
-  },
-  {
-    id: 11,
-  },
-  {
-    id: 12,
-  },
-  {
-    id: 13,
-  },
-  {
-    id: 14,
-  },
-  {
-    id: 15,
-  },
-  {
-    id: 16,
-  },
-  {
-    id: 17,
-  },
-  {
-    id: 18,
-  },
-  {
-    id: 19,
-  },
-  {
-    id: 20,
-  },
-  {
-    id: 21,
-  },
-  {
-    id: 22,
-  },
-]
+}
