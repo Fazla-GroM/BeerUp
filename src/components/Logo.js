@@ -9,6 +9,12 @@ const Logo = ({ className }) => {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    transition: "all .4s",
+    backfaceVisibility: "hidden",
+
+    "&:hover": {
+      transform: "scale(1.2)",
+    },
 
     "& img:first-of-type": {
       marginRight: "1rem",

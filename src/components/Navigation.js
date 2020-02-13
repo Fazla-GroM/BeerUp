@@ -37,6 +37,13 @@ const Navigation = () => {
     fontSize: "1.4rem",
     fontWeight: "600",
 
+    "&:hover": {
+      "&::after": {
+        width: "100%",
+        backgroundColor: colorPrimary,
+      },
+    },
+
     "&::after": {
       position: "absolute",
       content: "' '",
