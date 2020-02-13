@@ -7,7 +7,7 @@ import {
   mq,
 } from "../../theme"
 
-const FormTextInput = ({ id, placeholder, type }) => {
+const FormTextInput = ({ id, placeholder, type, pattern }) => {
   const cssHolder = css({
     width: "100%",
     position: "relative",
@@ -52,7 +52,13 @@ const FormTextInput = ({ id, placeholder, type }) => {
 
   return (
     <div css={cssHolder}>
-      <input css={cssInput} type={type} id={id} placeholder=" " />
+      <input
+        css={cssInput}
+        type={type}
+        id={id}
+        placeholder=" "
+        pattern={pattern}
+      />
 
       <label css={cssLabel} htmlFor={id}>
         {placeholder}

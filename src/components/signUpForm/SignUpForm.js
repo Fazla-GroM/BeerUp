@@ -63,7 +63,12 @@ const SignUpForm = () => {
       <h3 css={cssTitle}>Quick, join up before we drink all the beer!</h3>
       <form css={cssForm}>
         <FormSection title="Personal Information">
-          <FormTextInput id="UserName" placeholder="Full name" type="text" />
+          <FormTextInput
+            id="UserName"
+            placeholder="Full name"
+            type="text"
+            pattern="[A-Za-z0-9]+"
+          />
         </FormSection>
         <FormSection title="Contact Information">
           <FormTextInput id="EMail" placeholder="Email" type="email" />

@@ -6,7 +6,7 @@ import {
   fontBlackPrimary,
 } from "../../theme"
 
-const FormTextareaInput = ({ id, placeholder }) => {
+const FormTextareaInput = ({ id, placeholder, pattern }) => {
   const cssHolder = css({
     margin: "2rem 0",
     width: "100%",
