@@ -1,1 +1,2 @@
 export const SET_IS_MOBILE_NAV_OPEN = "SET_IS_MOBILE_NAV_OPEN"
+export const SET_BEER_MODAL = "SET_BEER_MODAL"

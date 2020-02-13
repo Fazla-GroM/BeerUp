@@ -6,3 +6,8 @@ export const selectIsMobileNavOpen = createSelector(
   [globalsSelector],
   globals => globals.isMobileNavOpen
 )
+
+export const selectBeerModal = createSelector(
+  [globalsSelector],
+  globals => globals.beerModal
+)
