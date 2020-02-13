@@ -1,15 +1,17 @@
 import React, { useState } from "react"
 import { css } from "@emotion/core"
+import { useDispatch } from "react-redux"
+import { setActiveCrate } from "../redux/crates/cratesActions"
 import {
   fontBlackPrimary,
   fontBlackSecondary,
-  fontBlackDisabled,
   colorSecondary,
   mq,
 } from "../theme"
-import crateImg from "../assets/crate.svg"
+import BeerCrate from "./BeerCrate"
 
 const TabMenu = ({ data, activeTabIndex }) => {
+  const dispatch = useDispatch()
   const [{ tabData, activeTab }, setActiveTab] = useState({
     activeTab: { ...data[activeTabIndex], index: activeTabIndex },
     tabData: data,
@@ -22,6 +24,7 @@ const TabMenu = ({ data, activeTabIndex }) => {
         activeTab: { ...state.tabData[activeIndex], index: activeIndex },
       }
     })
+    dispatch(setActiveCrate(activeIndex))
   }
 
   const cssTabMenu = css({
@@ -54,18 +57,6 @@ const TabMenu = ({ data, activeTabIndex }) => {
     padding: "2rem 0",
   })
 
-  const cssCrate = css({
-    width: "26.4rem",
-    height: "31.7rem",
-    display: "grid",
-    gridTemplateRows: "repeat(5,1fr)",
-    gridTemplateColumns: "repeat(4,1fr)",
-    backgroundImage: `url(${crateImg})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    margin: "0 auto",
-  })
-
   const cssQuote = css({
     display: "flex",
     alignItems: "center",
@@ -94,8 +85,8 @@ const TabMenu = ({ data, activeTabIndex }) => {
           </li>
         ))}
       </ul>
-      <div css={cssTabContent}>
-        <div title="Empty Beer crate ready to be filled" css={cssCrate}></div>
+      <div key={activeTab.index} css={cssTabContent}>
+        <BeerCrate beerSelector={activeTab.selector} />
       </div>
       <blockquote css={cssQuote}>
         Add a beer to have it appear in crate.
@@ -120,8 +111,26 @@ const TabButton = ({ label, isActive, handleTabs, index }) => {
     cursor: "pointer",
     outline: "none",
     padding: "0 0 1rem 0",
-    borderBottom: `4px solid ${isActive ? colorSecondary : "transparent"}`,
     transition: "all 0.4s",
+    position: "relative",
+
+    "&:hover::after": {
+      width: "100%",
+      backgroundColor: colorSecondary,
+    },
+
+    "&::after": {
+      content: "''",
+      position: "absolute",
+      bottom: "0",
+      left: "50%",
+      transform: "translateX(-50%)",
+      height: "4px",
+      width: isActive ? "100%" : "0",
+      backgroundColor: isActive ? colorSecondary : "transparent",
+      borderRadius: "10rem",
+      transition: "all .4s",
+    },
   })
 
   return (
