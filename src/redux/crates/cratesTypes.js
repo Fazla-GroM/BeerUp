@@ -1,0 +1,4 @@
+export const SET_CRATE_ONE = "SET_CRATE_ONE"
+export const SET_CRATE_TWO = "SET_CRATE_TWO"
+export const SET_CRATE_THREE = "SET_CRATE_THREE"
+export const SET_ACTIVE_CRATE = "SET_ACTIVE_CRATE"
