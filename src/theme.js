@@ -1,4 +1,4 @@
-import { css } from "@emotion/core"
+import { css, keyframes } from "@emotion/core"
 import emotionReset from "emotion-reset"
 import backgroundImg from "./assets/pattern.svg"
 
@@ -16,7 +16,9 @@ export const theme = {
 }
 //BOX SHADOWS
 export const boxShadow =
-  "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
+  "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)"
+export const boxShadowHover =
+  "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
 //COLORS
 export const backgroundWhite = "#F7F7F7"
 export const backgroundBlack = "#121212"
@@ -86,4 +88,57 @@ export const globalStyles = css`
   a {
     text-decoration: none;
   }
+
+  .page-enter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    height: 100%;
+    z-index: 2;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  .page-enter-active {
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    overflow: hidden;
+    z-index: 2;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.5s;
+  }
+
+  .page-exit {
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    z-index: 1;
+  }
+
+  .page-exit-active {
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    overflow: hidden;
+    transform: translate3d(-100%, 0, 0);
+    z-index: 1;
+    transition: all 0.5s;
+  }
+`
+
+export const bounce = keyframes`
+ 0%{
+   transform:scale(0)
+ }
+
+ 100%{
+   transform:scale(1)
+
+ }
 `
