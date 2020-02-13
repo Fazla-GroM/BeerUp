@@ -2,7 +2,6 @@ const path = require("path")
 const Dotenv = require("dotenv-webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const ErrorOverlayPlugin = require("error-overlay-webpack-plugin")
-const GoogleFontsPlugin = require("google-fonts-plugin")
 
 module.exports = {
   mode: "development",
@@ -80,13 +79,7 @@ module.exports = {
           },
           {
             loader: "file-loader",
-            options: {
-              // Images larger than 10 KB won’t be inlined
-              // limit: 10 * 1024,
-              // Remove quotes around the encoded URL –
-              // they’re rarely useful
-              // noquotes: true,
-            },
+            options: {},
           },
         ],
       },
@@ -117,17 +110,6 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, "../public/index.html"),
       inject: true,
-      title: "Beer App",
     }),
-    // new GoogleFontsPlugin({
-    //   fonts: [
-    //     {
-    //       family: "Poppins",
-    //       variants: ["300", "400", "500", "600", "700"],
-    //       subsets: ["latin", "latin-ext"],
-    //     },
-    //   ],
-    //   filename: "assets/font.css",
-    // }),
   ],
 }
