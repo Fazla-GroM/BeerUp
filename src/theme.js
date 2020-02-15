@@ -62,6 +62,7 @@ export const globalStyles = css`
     box-sizing: border-box;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
   }
   body {
     height: 100%;
