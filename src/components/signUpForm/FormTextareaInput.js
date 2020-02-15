@@ -6,7 +6,14 @@ import {
   fontBlackPrimary,
 } from "../../theme"
 
-const FormTextareaInput = ({ id, placeholder, pattern }) => {
+const FormTextareaInput = ({
+  id,
+  placeholder,
+  name,
+  value,
+  handleChange,
+  error,
+}) => {
   const cssHolder = css({
     margin: "2rem 0",
     width: "100%",
@@ -47,12 +54,32 @@ const FormTextareaInput = ({ id, placeholder, pattern }) => {
     transition: "all .4s",
     backfaceVisibility: "hidden",
   })
+
+  const cssError = css({
+    position: "absolute",
+    bottom: "-2em",
+    left: "50%",
+    transform: "translateX(-50%)",
+    color: "red",
+    fontSize: "1.2rem",
+    width: "100%",
+    textAlign: "center",
+  })
+
   return (
     <div css={cssHolder}>
-      <textarea css={cssTextarea} id={id} placeholder=" " />
+      <textarea
+        css={cssTextarea}
+        id={id}
+        placeholder=" "
+        name={name}
+        value={value}
+        onChange={handleChange}
+      />
       <label css={cssLabel} htmlFor={id}>
         {placeholder}
       </label>
+      {error.isError && <span css={cssError}>{error.errMsg}</span>}
     </div>
   )
 }

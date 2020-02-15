@@ -2,7 +2,7 @@ import React from "react"
 import { css } from "@emotion/core"
 import { colorPrimary, fontBlackPrimary } from "../../theme"
 
-const FormCheckboxInput = ({ id, name, value }) => {
+const FormCheckboxInput = ({ id, name, content, value, handleChange }) => {
   const cssHolder = css({
     "& input": {
       display: "none",
@@ -55,10 +55,16 @@ const FormCheckboxInput = ({ id, name, value }) => {
   })
   return (
     <div css={cssHolder}>
-      <input type="checkbox" id={id} name={name} value={value} />
+      <input
+        type="checkbox"
+        id={id}
+        name={name}
+        checked={value}
+        onChange={handleChange}
+      />
       <label css={cssLabel} htmlFor={id}>
         <span css={cssCheckBtn}></span>
-        <span css={cssValue}>{value}</span>
+        <span css={cssValue}>{content}</span>
       </label>
     </div>
   )

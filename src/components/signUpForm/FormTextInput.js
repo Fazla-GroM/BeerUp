@@ -1,20 +1,25 @@
 import React from "react"
 import { css } from "@emotion/core"
-import {
-  fontBlackDisabled,
-  fontBlackPrimary,
-  backgroundWhite,
-  mq,
-} from "../../theme"
+import { fontBlackDisabled, backgroundWhite, mq } from "../../theme"
 
-const FormTextInput = ({ id, placeholder, type, pattern }) => {
+const FormTextInput = ({
+  id,
+  placeholder,
+  type,
+  name,
+  value,
+  handleChange,
+  error,
+  isRequired,
+  isFocused,
+}) => {
   const cssHolder = css({
     width: "100%",
     position: "relative",
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-    marginBottom: "2rem",
+    marginBottom: "3rem",
 
     [mq[0]]: {
       width: "60%",
@@ -50,6 +55,26 @@ const FormTextInput = ({ id, placeholder, type, pattern }) => {
     },
   })
 
+  const cssError = css({
+    position: "absolute",
+    bottom: "-2em",
+    left: "50%",
+    transform: "translateX(-50%)",
+    color: "red",
+    fontSize: "1.2rem",
+    width: "100%",
+    textAlign: "center",
+  })
+
+  const cssRequired = css({
+    fontSize: "1.2rem",
+    color: "red",
+    position: "absolute",
+    top: "50%",
+    right: ".5rem",
+    transform: "translateY(-50%)",
+  })
+
   return (
     <div css={cssHolder}>
       <input
@@ -57,12 +82,17 @@ const FormTextInput = ({ id, placeholder, type, pattern }) => {
         type={type}
         id={id}
         placeholder=" "
-        pattern={pattern}
+        name={name}
+        value={value}
+        onChange={handleChange}
+        autoFocus={isFocused}
       />
 
       <label css={cssLabel} htmlFor={id}>
         {placeholder}
       </label>
+      {isRequired && <span css={cssRequired}>&#10033;</span>}
+      {error.isError && <span css={cssError}>{error.errMsg}</span>}
     </div>
   )
 }

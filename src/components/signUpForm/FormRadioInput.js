@@ -2,7 +2,7 @@ import React from "react"
 import { css } from "@emotion/core"
 import { fontBlackPrimary, colorPrimary } from "../../theme"
 
-const FormRadioInput = ({ id, name, value }) => {
+const FormRadioInput = ({ id, name, value, defaultChecked, handleChange }) => {
   const cssHolder = css({
     "& input": {
       display: "none",
@@ -55,7 +55,14 @@ const FormRadioInput = ({ id, name, value }) => {
 
   return (
     <div css={cssHolder}>
-      <input type="radio" name={name} id={id} value={value} />
+      <input
+        type="radio"
+        name={name}
+        id={id}
+        value={value}
+        defaultChecked={defaultChecked}
+        onChange={handleChange}
+      />
       <label css={cssLabel} htmlFor={id}>
         <span css={cssRadioBtn}></span>
         <span css={cssValue}>{value}</span>
