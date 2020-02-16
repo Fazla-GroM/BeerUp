@@ -11,3 +11,8 @@ export const selectBeerModal = createSelector(
   [globalsSelector],
   globals => globals.beerModal
 )
+
+export const selectIsBeerBasketOpen = createSelector(
+  [globalsSelector],
+  globals => globals.isBeerBasketOpen
+)

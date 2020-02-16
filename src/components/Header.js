@@ -2,17 +2,26 @@ import React from "react"
 import { css } from "@emotion/core"
 import { Transition } from "react-transition-group"
 import { useSelector } from "react-redux"
-import { selectIsMobileNavOpen } from "../redux/globals/globalsSelectors"
+import {
+  selectIsMobileNavOpen,
+  selectIsBeerBasketOpen,
+} from "../redux/globals/globalsSelectors"
 import MobileNav from "./MobileNav"
 import MobileNavToggleBtn from "../components/MobileNavToggleBtn"
 import Logo from "./Logo"
 import backgroundPattern from "../assets/pattern.svg"
-import { backgroundBlack } from "../theme"
+import { backgroundBlack, mq } from "../theme"
 import Navigation from "./Navigation"
+import BeerBasketBtn from "./BeerBasketBtn"
+import BeerBasket from "../components/BeerBasket"
+import useMediaQuery from "../hooks/useMediaQuery"
 
 const Header = () => {
+  const isNotMobile = useMediaQuery("(min-width: 768px)")
   const isMobileNavOpen = useSelector(selectIsMobileNavOpen)
+  const isBeerBasketOpen = useSelector(selectIsBeerBasketOpen)
 
+  console.log(isNotMobile)
   const cssHeader = css({
     position: "fixed",
     top: "0",
@@ -29,6 +38,21 @@ const Header = () => {
     backgroundImage: `url(${backgroundPattern})`,
   })
 
+  const cssNavBtnGroup = css({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
+    "& button:first-of-type": {
+      marginRight: "2.2rem",
+
+      [mq[0]]: {
+        marginRight: "0",
+        marginLeft: "3rem",
+      },
+    },
+  })
+
   return (
     <>
       <Transition unmountOnExit in={isMobileNavOpen} timeout={{ exit: 400 }}>
@@ -38,10 +62,21 @@ const Header = () => {
           />
         )}
       </Transition>
+      <Transition unmountOnExit in={isBeerBasketOpen} timeout={{ exit: 400 }}>
+        {state => (
+          <BeerBasket
+            transitionStyle={{ ...mobileNavTransitionStyles[state] }}
+          />
+        )}
+      </Transition>
+
       <header css={cssHeader}>
         <Logo />
-        <Navigation />
-        <MobileNavToggleBtn />
+        <div css={cssNavBtnGroup}>
+          {isNotMobile && <Navigation />}
+          <BeerBasketBtn />
+          {!isNotMobile && <MobileNavToggleBtn />}
+        </div>
       </header>
     </>
   )

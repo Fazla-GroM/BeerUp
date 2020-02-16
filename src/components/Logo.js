@@ -10,10 +10,11 @@ const Logo = ({ className }) => {
     alignItems: "center",
     justifyContent: "center",
     transition: "all .4s",
-    backfaceVisibility: "hidden",
+
+    "& img": {},
 
     "&:hover": {
-      transform: "scale(1.2)",
+      transform: "scale(1.1)",
     },
 
     "& img:first-of-type": {

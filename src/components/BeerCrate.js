@@ -53,9 +53,11 @@ const BeerCrate = ({ beerSelector }) => {
     <>
       <div title="Empty Beer crate ready to be filled" css={cssCrate}>
         {crateData.beers.map((beer, index) => {
-          return <img key={index} css={cssBeer} src={beerImg} alt="beer" />
+          return <img key={index} css={cssBeer} src={beerImg} alt={beer.name} />
         })}
-        <div css={cssBeerCounter}>{crateData.beers.length}</div>
+        {crateData.beers.length > 0 && (
+          <div css={cssBeerCounter}>{crateData.beers.length}</div>
+        )}
       </div>
     </>
   )

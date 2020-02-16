@@ -21,3 +21,14 @@ export const selectCrateThree = createSelector(
   [cratesSelector],
   crates => crates.crateThree
 )
+
+export const selectBeerAmmountInAllCrates = createSelector(
+  [cratesSelector],
+  crates => {
+    return (
+      crates.crateOne.beers.length +
+      crates.crateTwo.beers.length +
+      crates.crateThree.beers.length
+    )
+  }
+)

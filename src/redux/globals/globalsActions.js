@@ -1,4 +1,8 @@
-import { SET_IS_MOBILE_NAV_OPEN, SET_BEER_MODAL } from "./globalsTypes"
+import {
+  SET_IS_MOBILE_NAV_OPEN,
+  SET_BEER_MODAL,
+  SET_IS_BEER_BASKET_OPEN,
+} from "./globalsTypes"
 
 export const setIsMobileNavOpen = isOpen => {
   return {
@@ -14,5 +18,12 @@ export const setBeerModal = (isOpen, data) => {
       isOpen,
       data,
     },
+  }
+}
+
+export const setIsBeerBasketOpen = isOpen => {
+  return {
+    type: SET_IS_BEER_BASKET_OPEN,
+    payload: isOpen,
   }
 }

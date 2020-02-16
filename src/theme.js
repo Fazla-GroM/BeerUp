@@ -19,6 +19,8 @@ export const boxShadow =
   "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)"
 export const boxShadowHover =
   "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
+export const boxShadowTwo =
+  "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)"
 //COLORS
 export const backgroundWhite = "#F7F7F7"
 export const backgroundBlack = "#121212"
@@ -79,11 +81,9 @@ export const globalStyles = css`
   #App {
     position: relative;
     width: 100%;
-    height: 100%;
   }
   main {
     width: 100%;
-
     padding-top: 12rem;
   }
   a {
@@ -143,3 +143,6 @@ export const bounce = keyframes`
 
  }
 `
+
+//crate ilu
+// width="452px" height="563px"

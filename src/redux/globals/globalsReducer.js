@@ -1,4 +1,8 @@
-import { SET_IS_MOBILE_NAV_OPEN, SET_BEER_MODAL } from "./globalsTypes"
+import {
+  SET_IS_MOBILE_NAV_OPEN,
+  SET_BEER_MODAL,
+  SET_IS_BEER_BASKET_OPEN,
+} from "./globalsTypes"
 
 const INITIAL_STATE = {
   isMobileNavOpen: false,
@@ -6,6 +10,7 @@ const INITIAL_STATE = {
     isOpen: false,
     data: {},
   },
+  isBeerBasketOpen: true,
 }
 
 export const globalsReducer = (state = INITIAL_STATE, action) => {
@@ -23,6 +28,11 @@ export const globalsReducer = (state = INITIAL_STATE, action) => {
           ...state.beerModal,
           ...action.payload,
         },
+      }
+    case SET_IS_BEER_BASKET_OPEN:
+      return {
+        ...state,
+        isBeerBasketOpen: action.payload,
       }
     default:
       return state
