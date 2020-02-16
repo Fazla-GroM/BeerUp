@@ -1,7 +1,7 @@
 import React from "react"
 import { Global } from "@emotion/core"
 import { globalStyles } from "./theme"
-import { Route, Switch, useLocation } from "react-router-dom"
+import { Route, Switch, useLocation, useHistory } from "react-router-dom"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
 import { mainRoutes } from "./routes/routes"
 import Header from "./components/Header"

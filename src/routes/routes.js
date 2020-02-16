@@ -1,6 +1,7 @@
 import HomePage from "../pages/HomePage"
 import FavoritesPage from "../pages/FavoritesPage"
 import SignUpPage from "../pages/SignUpPage"
+import NoMatchPage from "../pages/NoMatchPage"
 
 export const mainRoutes = [
   {
@@ -15,6 +16,10 @@ export const mainRoutes = [
   {
     path: "/sign-up",
     Component: SignUpPage,
+  },
+  {
+    path: "*",
+    Component: NoMatchPage,
   },
 ]
 
