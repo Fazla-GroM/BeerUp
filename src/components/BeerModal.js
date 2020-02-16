@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { css } from "@emotion/core"
 import { useDispatch, useSelector } from "react-redux"
 import { setBeerModal } from "../redux/globals/globalsActions"
 import { selectBeerModal } from "../redux/globals/globalsSelectors"
-
+import { addBeerToCrate, setActiveCrate } from "../redux/crates/cratesActions"
+import { selectActiveCrate } from "../redux/crates/cratesSelectors"
 import {
   backgroundWhite,
   colorPrimary,
@@ -14,9 +15,20 @@ import {
 import LikeButton from "./LikeButton"
 import Button from "./Button"
 
+const CRATE_LIMIT = 20
+
 const BeerModal = ({ transitionStyle }) => {
   const dispatch = useDispatch()
   const { isOpen, data } = useSelector(selectBeerModal)
+  const { activeCrateIndex, beersAmmount } = useSelector(selectActiveCrate)
+  console.log({ beersAmmount })
+  const handleAddBeer = (beerData, activeCrate) => {
+    if (beersAmmount < CRATE_LIMIT) {
+      dispatch(addBeerToCrate(beerData, activeCrate))
+    } else {
+      alert("FULL")
+    }
+  }
 
   const handleClose = e => {
     const target = e.target
@@ -247,29 +259,45 @@ const BeerModal = ({ transitionStyle }) => {
       css={cssBeerModal}
     >
       <div css={cssCard}>
-        <LikeButton css={cssModalLike} />
-        <button id="BeerModalClose" css={cssCloseBtn}></button>
+        {beersAmmount < CRATE_LIMIT ? (
+          <>
+            <LikeButton css={cssModalLike} />
+            <button id="BeerModalClose" css={cssCloseBtn}></button>
 
-        <img css={cssImg} src={data.image_url} alt={data.name} />
+            <img css={cssImg} src={data.image_url} alt={data.name} />
 
-        <div css={cssContent}>
-          <h4 css={cssTitle}>
-            {data.name}
-            <span>{data.tagline}</span>
-          </h4>
-          <div css={cssStatsHolder}>
-            <div css={cssStats}>
-              <span>ibu</span>
-              <span>{data.ibu}</span>
+            <div css={cssContent}>
+              <h4 css={cssTitle}>
+                {data.name}
+                <span>{data.tagline}</span>
+              </h4>
+              <div css={cssStatsHolder}>
+                <div css={cssStats}>
+                  <span>ibu</span>
+                  <span>{data.ibu}</span>
+                </div>
+                <div css={cssStats}>
+                  <span>abv</span>
+                  <span>{data.abv}%</span>
+                </div>
+              </div>
+              <div css={cssDesc}>{data.description}</div>
             </div>
-            <div css={cssStats}>
-              <span>abv</span>
-              <span>{data.abv}%</span>
-            </div>
+            <Button
+              css={cssAddBtn}
+              islink={false}
+              title="Add to crate"
+              handleClick={() => handleAddBeer(data, activeCrateIndex)}
+            />
+          </>
+        ) : (
+          <div style={{ width: "100%", height: "100%" }}>
+            <h4 css={cssTitle} style={{ textAlign: "center" }}>
+              Crate Full, choose another
+            </h4>
+            <button id="BeerModalClose" css={cssCloseBtn}></button>
           </div>
-          <div css={cssDesc}>{data.description}</div>
-        </div>
-        <Button css={cssAddBtn} islink={false} title="Add to crate" />
+        )}
       </div>
     </div>
   )

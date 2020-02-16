@@ -33,6 +33,11 @@ const TabMenu = ({ data, activeTabIndex }) => {
     justifyContent: "center",
     flexDirection: "column",
     width: "100%",
+    marginTop: "2.5rem",
+
+    [mq[0]]: {
+      marginTop: "0",
+    },
   })
 
   const cssBtnList = css({

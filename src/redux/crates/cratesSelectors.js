@@ -2,6 +2,11 @@ import { createSelector } from "reselect"
 
 const cratesSelector = state => state.crates
 
+export const selectActiveCrate = createSelector(
+  [cratesSelector],
+  crates => crates.activeCrate
+)
+
 export const selectCrateOne = createSelector(
   [cratesSelector],
   crates => crates.crateOne

@@ -3,12 +3,18 @@ import {
   SET_CRATE_TWO,
   SET_CRATE_THREE,
   SET_ACTIVE_CRATE,
+  SET_ACTIVE_CRATE_AMMOUNT,
 } from "./cratesTypes"
 
 //BULLSHIT
 
+const CRATE_LIMIT = 20
+
 const INITIAL_STATE = {
-  activeCrate: 0,
+  activeCrate: {
+    activeCrateIndex: 0,
+    beersAmmount: 0,
+  },
   crateOne: {
     beers: [],
     isFull: false,
@@ -28,7 +34,20 @@ export const cratesReducer = (state = INITIAL_STATE, action) => {
     case SET_ACTIVE_CRATE: {
       return {
         ...state,
-        activeCrate: action.payload,
+        activeCrate: {
+          ...state.activeCrate,
+          activeCrateIndex: action.payload,
+        },
+      }
+    }
+
+    case SET_ACTIVE_CRATE_AMMOUNT: {
+      return {
+        ...state,
+        activeCrate: {
+          ...state.activeCrate,
+          beersAmmount: action.payload,
+        },
       }
     }
 
@@ -36,8 +55,8 @@ export const cratesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         crateOne: {
-          isFull: action.payload.isFull,
-          beers: [...state.crateOne.beers, ...action.payload.beers],
+          isFull: state.crateOne.beers.length >= CRATE_LIMIT,
+          beers: [...state.crateOne.beers, action.payload],
         },
       }
     }
@@ -45,8 +64,8 @@ export const cratesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         crateTwo: {
-          isFull: action.payload.isFull,
-          beers: [...state.crateTwo.beers, ...action.payload.beers],
+          isFull: state.crateTwo.beers.length === CRATE_LIMIT,
+          beers: [...state.crateTwo.beers, action.payload],
         },
       }
     }
@@ -54,8 +73,8 @@ export const cratesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         crateThree: {
-          isFull: action.payload.isFull,
-          beers: [...state.crateThree.beers, ...action.payload.beers],
+          isFull: state.crateThree.beers.length === CRATE_LIMIT,
+          beers: [...state.crateThree.beers, action.payload],
         },
       }
     }

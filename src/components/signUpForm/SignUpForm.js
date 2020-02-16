@@ -211,7 +211,6 @@ const SignUpForm = () => {
             value={formData.fullName}
             handleChange={handleForm}
             isRequired={true}
-            isFocused={true}
           />
         </FormSection>
         <FormSection title="Contact Information">

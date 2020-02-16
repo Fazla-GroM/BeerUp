@@ -1,13 +1,21 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { css } from "@emotion/core"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { setActiveCrateAmmount } from "../redux/crates/cratesActions"
 import crateImg from "../assets/crate.svg"
 import beerImg from "../assets/bottle_draft@2x.png"
+import { colorPrimary } from "../theme"
 
 const BeerCrate = ({ beerSelector }) => {
+  const dispatch = useDispatch()
   const crateData = useSelector(beerSelector)
+  console.log(crateData.beers.length)
 
-  console.log({ beerSelector })
+  useEffect(() => {
+    dispatch(setActiveCrateAmmount(crateData.beers.length))
+  }, [crateData.beers.length])
+
+  // console.log({ beerSelector })
   const cssCrate = css({
     width: "26.4rem",
     height: "31.7rem",
@@ -18,6 +26,7 @@ const BeerCrate = ({ beerSelector }) => {
     backgroundSize: "cover",
     backgroundPosition: "center",
     margin: "0 auto",
+    position: "relative",
   })
 
   const cssBeer = css({
@@ -25,12 +34,30 @@ const BeerCrate = ({ beerSelector }) => {
     padding: "1rem",
   })
 
+  const cssBeerCounter = css({
+    backgroundColor: colorPrimary,
+    width: "4rem",
+    height: "4rem",
+    borderRadius: "10rem",
+    textAlign: "center",
+    fontWeight: "700",
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
+    position: "absolute",
+    top: "-2rem",
+    right: "-2rem",
+  })
+
   return (
-    <div title="Empty Beer crate ready to be filled" css={cssCrate}>
-      {crateData.beers.map((beer, index) => {
-        return <img key={index} css={cssBeer} src={beerImg} alt="beer" />
-      })}
-    </div>
+    <>
+      <div title="Empty Beer crate ready to be filled" css={cssCrate}>
+        {crateData.beers.map((beer, index) => {
+          return <img key={index} css={cssBeer} src={beerImg} alt="beer" />
+        })}
+        <div css={cssBeerCounter}>{crateData.beers.length}</div>
+      </div>
+    </>
   )
 }
 
