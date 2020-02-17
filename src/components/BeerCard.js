@@ -30,8 +30,6 @@ const BeerCard = ({ data }) => {
     justifyContent: "center",
     transition: "all 0.3s cubic-bezier(.25,.8,.25,1)",
     cursor: "pointer",
-    //width: "250px",
-    //height: "250px",
 
     "&:hover": {
       boxShadow: boxShadowHover,

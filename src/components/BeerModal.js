@@ -21,7 +21,6 @@ const BeerModal = ({ transitionStyle }) => {
   const dispatch = useDispatch()
   const { isOpen, data } = useSelector(selectBeerModal)
   const { activeCrateIndex, beersAmmount } = useSelector(selectActiveCrate)
-  console.log({ beersAmmount })
   const handleAddBeer = (beerData, activeCrate) => {
     if (beersAmmount < CRATE_LIMIT) {
       dispatch(addBeerToCrate(beerData, activeCrate))

@@ -15,7 +15,6 @@ const MobileNav = ({ transitionStyle }) => {
     const target = e.target
     if (target.closest("#MobileNav")) {
       dispatch(setIsMobileNavOpen(false))
-      console.log(target)
     }
   }
 

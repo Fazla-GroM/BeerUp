@@ -9,7 +9,6 @@ import { colorPrimary } from "../theme"
 const BeerCrate = ({ beerSelector }) => {
   const dispatch = useDispatch()
   const crateData = useSelector(beerSelector)
-  console.log(crateData.beers.length)
 
   useEffect(() => {
     dispatch(setActiveCrateAmmount(crateData.beers.length))
