@@ -1,4 +1,5 @@
 import { createSelector } from "reselect"
+import countDuplicatesArr from "../../helpers/countDuplicatesArr"
 
 const cratesSelector = state => state.crates
 
@@ -32,3 +33,12 @@ export const selectBeerAmmountInAllCrates = createSelector(
     )
   }
 )
+
+export const selectBeersForBasket = createSelector([cratesSelector], crates => {
+  const allBeersInCrates = [
+    ...crates.crateOne.beers,
+    ...crates.crateTwo.beers,
+    ...crates.crateThree.beers,
+  ]
+  return countDuplicatesArr(allBeersInCrates)
+})

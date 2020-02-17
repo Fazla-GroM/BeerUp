@@ -10,7 +10,7 @@ const INITIAL_STATE = {
     isOpen: false,
     data: {},
   },
-  isBeerBasketOpen: true,
+  isBeerBasketOpen: false,
 }
 
 export const globalsReducer = (state = INITIAL_STATE, action) => {
