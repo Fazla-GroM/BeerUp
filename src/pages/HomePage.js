@@ -6,6 +6,7 @@ import BeerSelector from "../components/BeerSelector"
 import { mq } from "../theme"
 import { getAllBeers } from "../redux/beers/beersActions"
 import { selectAllBeers } from "../redux/beers/beersSelectors"
+import { Helmet } from "react-helmet"
 
 const HomePage = () => {
   const cssSignUpBtn = css({
@@ -22,9 +23,26 @@ const HomePage = () => {
     marginTop: "-2rem",
   })
 
-  console.log("HOME PAGE")
   return (
     <>
+      <Helmet>
+        <title>BeerUp | Home</title>
+        <meta property="og:title" content="BeerUp | Home" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="www.siteurl.com" />
+        <meta property="og:image" content="neka slika" />
+        <meta
+          property="og:description"
+          content="BeerUp! A best place to be if you are a beer lover!"
+        />
+        <meta
+          name="description"
+          content="BeerUp! A best place to be if you are a beer lover!"
+        />
+
+        {/*CANONICAL */}
+        <link rel="canonical" href="www.siteurl.com" />
+      </Helmet>
       <HeroBox
         isHomePage={true}
         subtitle="The Beerster Pro 2.0"

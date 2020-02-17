@@ -5,6 +5,7 @@ import HeroBox from "../components/HeroBox"
 import SectionContainer from "../components/SectionContainer"
 import SignUpForm from "../components/signUpForm/SignUpForm"
 import capImg from "../assets/cap.svg"
+import { Helmet } from "react-helmet"
 
 const SignUpPage = () => {
   const cssFormContainer = css({
@@ -28,6 +29,24 @@ const SignUpPage = () => {
   console.log("SIGNUP")
   return (
     <>
+      <Helmet>
+        <title>BeerUp | Sign-Up</title>
+        <meta property="og:title" content="BeerUp | Sign-Up" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="www.siteurl.com/sign-up" />
+        <meta property="og:image" content="neka slika" />
+        <meta
+          property="og:description"
+          content="BeerUp! A best place to be if you are a beer lover!"
+        />
+        <meta
+          name="description"
+          content="BeerUp! A best place to be if you are a beer lover!"
+        />
+
+        {/*CANONICAL */}
+        <link rel="canonical" href="www.siteurl.com/sign-up" />
+      </Helmet>
       <HeroBox title="Join Up!" />
       <SectionContainer css={cssFormContainer}>
         <SignUpForm />
