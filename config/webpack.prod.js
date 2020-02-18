@@ -4,6 +4,7 @@ const TerserWebpackPlugin = require("terser-webpack-plugin")
 const GoogleFontsPlugin = require("google-fonts-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const Dotenv = require("dotenv-webpack")
+const { GenerateSW, InjectManifest } = require("workbox-webpack-plugin")
 
 module.exports = {
   mode: "production",
@@ -99,6 +100,11 @@ module.exports = {
     }),
     //clear build directory before new build process
     new CleanWebpackPlugin(),
+    new GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+      //swDest: path.resolve(__dirname, '../build/sw/service-worker.js')
+    }),
   ],
 
   optimization: {
