@@ -1,7 +1,19 @@
-import HomePage from "../pages/HomePage"
-import FavoritesPage from "../pages/FavoritesPage"
-import SignUpPage from "../pages/SignUpPage"
+// import HomePage from "../pages/HomePage"
+// import FavoritesPage from "../pages/FavoritesPage"
+// import SignUpPage from "../pages/SignUpPage"
 import NoMatchPage from "../pages/NoMatchPage"
+import loadable from "@loadable/component"
+
+const HomePage = loadable(() =>
+  import(/* webpackPrefetch: true */ "../pages/HomePage")
+)
+
+const FavoritesPage = loadable(() =>
+  import(/* webpackPrefetch: true */ "../pages/FavoritesPage")
+)
+const SignUpPage = loadable(() =>
+  import(/* webpackPrefetch: true */ "../pages/SignUpPage")
+)
 
 export const mainRoutes = [
   {

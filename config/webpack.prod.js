@@ -47,6 +47,8 @@ module.exports = {
           {
             loader: "url-loader",
             options: {
+              name: "[name].[contenthash:8].[ext]",
+              outputPath: "assets",
               // Images larger than 10 KB won’t be inlined
               limit: 10 * 1024,
             },
@@ -64,13 +66,10 @@ module.exports = {
             loader: "@svgr/webpack",
           },
           {
-            loader: "svg-url-loader",
+            loader: "file-loader",
             options: {
-              // Images larger than 10 KB won’t be inlined
-              limit: 10 * 1024,
-              // Remove quotes around the encoded URL –
-              // they’re rarely useful
-              noquotes: true,
+              name: "[name].[contenthash:8].[ext]",
+              outputPath: "assets",
             },
           },
         ],
