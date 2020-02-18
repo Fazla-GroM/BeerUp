@@ -22,6 +22,7 @@ module.exports = {
     open: true,
     overlay: false,
     host: "192.168.43.32",
+    //host: "192.168.42.97",
     port: 3000,
     hot: true,
   },
