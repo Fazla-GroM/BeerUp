@@ -1,14 +1,28 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { css } from "@emotion/core"
 import HeroBox from "../components/HeroBox"
 import Button from "../components/Button"
 import BeerSelector from "../components/BeerSelector"
 import { mq } from "../theme"
 import { getAllBeers } from "../redux/beers/beersActions"
+import { useDispatch, useSelector } from "react-redux"
 import { selectAllBeers } from "../redux/beers/beersSelectors"
 import { Helmet } from "react-helmet"
 
 const HomePage = () => {
+  const dispatch = useDispatch()
+  const beerListData = useSelector(selectAllBeers)
+
+  const getInitialBeers = () => {
+    if (!beerListData.results.length) {
+      dispatch(getAllBeers(beerListData.pageToFetch))
+    }
+  }
+
+  useEffect(() => {
+    getInitialBeers()
+  }, [])
+
   const cssSignUpBtn = css({
     margin: "-3rem auto 0 auto ",
 
@@ -57,8 +71,7 @@ const HomePage = () => {
       <BeerSelector
         css={cssNegativeMargin}
         beerListTitle="Beers"
-        getBeerListData={getAllBeers}
-        selectBeerListData={selectAllBeers}
+        beerListData={beerListData.results}
       />
     </>
   )

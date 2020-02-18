@@ -1,11 +1,15 @@
 import React from "react"
 import { css } from "@emotion/core"
+import { useSelector } from "react-redux"
+import { selectFavorites } from "../redux/favorites/favoritesSelectors"
 import HeroBox from "../components/HeroBox"
 import BeerSelector from "../components/BeerSelector"
 import { mq } from "../theme"
 import { Helmet } from "react-helmet"
 
 const FavoritesPage = () => {
+  const favoriteBeers = useSelector(selectFavorites)
+
   const cssNegativeMargin = css({
     marginTop: "-10rem",
 
@@ -36,7 +40,11 @@ const FavoritesPage = () => {
         <link rel="canonical" href="www.siteurl.com/favorites" />
       </Helmet>
       <HeroBox title="Favourites" />
-      <BeerSelector css={cssNegativeMargin} beerListTitle="My favorite Beers" />
+      <BeerSelector
+        css={cssNegativeMargin}
+        beerListTitle="My favorite Beers"
+        beerListData={favoriteBeers}
+      />
     </>
   )
 }

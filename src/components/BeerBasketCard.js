@@ -9,21 +9,14 @@ const BeerBasketCard = ({ data }) => {
     height: "fit-content",
     padding: "1rem 2rem",
     display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: "1rem",
   })
 
   const cssImg = css({
-    width: "4.5rem",
+    width: "2.5rem",
     marginRight: "2rem",
-    position: "relative",
-    paddingBottom: "56.25%",
-
-    "& img": {
-      position: "absolute",
-      width: "100%",
-      top: "50%",
-      transform: "translateY(-50%)",
-    },
   })
 
   const cssContent = css({
@@ -53,7 +46,11 @@ const BeerBasketCard = ({ data }) => {
   return (
     <div css={cssBasketCard}>
       <div css={cssImg}>
-        <img src={data.image_url} alt={`${data.name}:${data.description}`} />
+        <img
+          css={cssImg}
+          src={data.image_url}
+          alt={`${data.name}:${data.description}`}
+        />
       </div>
       <div css={cssContent}>
         <h4 css={cssTitle}>

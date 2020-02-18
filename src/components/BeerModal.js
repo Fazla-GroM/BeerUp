@@ -170,7 +170,7 @@ const BeerModal = ({ transitionStyle }) => {
     },
 
     [mq[2]]: {
-      width: "15rem",
+      width: "12rem",
       marginRight: "10rem",
     },
   })
@@ -260,7 +260,7 @@ const BeerModal = ({ transitionStyle }) => {
       <div css={cssCard}>
         {beersAmmount < CRATE_LIMIT ? (
           <>
-            <LikeButton css={cssModalLike} />
+            <LikeButton data={data} css={cssModalLike} />
             <button id="BeerModalClose" css={cssCloseBtn}></button>
 
             <img css={cssImg} src={data.image_url} alt={data.name} />

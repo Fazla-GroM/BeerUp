@@ -1,8 +1,8 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { css } from "@emotion/core"
 import { Transition } from "react-transition-group"
 import { backgroundWhite, fontBlackPrimary, mq } from "../theme"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { selectBeerModal } from "../redux/globals/globalsSelectors"
 import {
   selectCrateOne,
@@ -18,26 +18,9 @@ import capImage from "../assets/cap.svg"
 import useMediaQuery from "../hooks/useMediaQuery"
 import BeerModal from "./BeerModal"
 
-const BeerSelector = ({
-  beerListTitle,
-  className,
-  getBeerListData,
-  selectBeerListData,
-}) => {
+const BeerSelector = ({ beerListTitle, className, beerListData }) => {
   const isMobile = useMediaQuery("(max-width:767px)")
-  const dispatch = useDispatch()
-  const beerListData = useSelector(selectBeerListData)
   const beerModal = useSelector(selectBeerModal)
-
-  const getInitialBeers = () => {
-    if (!beerListData.results.length) {
-      dispatch(getBeerListData(beerListData.pageToFetch))
-    }
-  }
-
-  useEffect(() => {
-    getInitialBeers()
-  }, [])
 
   const cssBeerSelector = css({
     backgroundColor: backgroundWhite,
@@ -133,9 +116,9 @@ const BeerSelector = ({
       <SectionContainer css={cssBeerSelector} className={className}>
         <div css={cssBeers}>
           <h3 css={cssTitle}>{beerListTitle}</h3>
-          {isMobile && (
+          {isMobile && beerListData.length > 0 && (
             <Swiper {...swiperParams}>
-              {beerListData.results.map(beer => (
+              {beerListData.map(beer => (
                 <div key={beer.id}>
                   <BeerCard data={beer} />
                 </div>
@@ -144,7 +127,7 @@ const BeerSelector = ({
           )}
           {!isMobile && (
             <div css={cssBeerGrid}>
-              {beerListData.results.map(beer => (
+              {beerListData.map(beer => (
                 <BeerCard key={beer.id} data={beer} />
               ))}
             </div>
@@ -168,7 +151,7 @@ const swiperParams = {
   freeMode: true,
   slidesPerView: 1.5,
   spaceBetween: 15,
-  rebuildOnUpdate: true,
+  //rebuildOnUpdate: true,
 }
 
 const tabMenuData = [

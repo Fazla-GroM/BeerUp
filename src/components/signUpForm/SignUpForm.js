@@ -131,8 +131,10 @@ const SignUpForm = () => {
       setFormData({ ...INITIAL_FORM_DATA })
       setFormErrors({ ...INITIAL_FORM_ERRORS })
       window.scrollTo(0, 0)
+      alert("SUCCESS")
     } else {
       formRef.current.scrollIntoView()
+      alert("WOOPS SOMETHING WENT WRONG")
     }
   }
 

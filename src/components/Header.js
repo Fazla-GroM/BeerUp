@@ -21,7 +21,6 @@ const Header = () => {
   const isMobileNavOpen = useSelector(selectIsMobileNavOpen)
   const isBeerBasketOpen = useSelector(selectIsBeerBasketOpen)
 
-  console.log(isNotMobile)
   const cssHeader = css({
     position: "fixed",
     top: "0",

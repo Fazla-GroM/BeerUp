@@ -40,6 +40,7 @@ const BeerCard = ({ data }) => {
     position: "absolute",
     top: "7px",
     left: "7px",
+    zIndex: "10",
   })
 
   const cssImage = css({
@@ -89,7 +90,7 @@ const BeerCard = ({ data }) => {
 
   return (
     <div onClick={() => dispatch(setBeerModal(true, data))} css={cssCard}>
-      <LikeButton css={cssCardLikeBtn} />
+      <LikeButton data={data} css={cssCardLikeBtn} />
       <div css={cssImage}>
         <img src={data.image_url} alt={`${data.name}: ${data.tagline}`} />
       </div>

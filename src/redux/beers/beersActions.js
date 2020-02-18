@@ -1,6 +1,5 @@
 import { GET_BEERS } from "./beersTypes"
 import mainApi from "../mainApi"
-import store from "../store"
 
 const BEERS = process.env.BEERS
 
@@ -19,5 +18,6 @@ export const getAllBeers = pageToFetch => async dispatch => {
     })
   } catch (err) {
     console.log(err)
+    alert("Woops something went wrong")
   }
 }

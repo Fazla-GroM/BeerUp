@@ -94,7 +94,7 @@ const BeerBasket = ({ transitionStyle }) => {
     height: "100%",
     overflowY: "auto",
     display: "grid",
-    gridTemplateRows: "fit-content(0%)",
+    gridAutoRows: "minmax(min-content, max-content)",
     gridTemplateColumns: "1fr",
     rowGap: "2rem",
     marginTop: "1rem",
