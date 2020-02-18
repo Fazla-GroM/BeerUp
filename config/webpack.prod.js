@@ -3,6 +3,7 @@ const HTMLWebpackPlugin = require("html-webpack-plugin")
 const TerserWebpackPlugin = require("terser-webpack-plugin")
 const GoogleFontsPlugin = require("google-fonts-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const Dotenv = require("dotenv-webpack")
 
 module.exports = {
   mode: "production",
@@ -31,6 +32,7 @@ module.exports = {
             plugins: [
               "@babel/plugin-syntax-dynamic-import",
               "@babel/plugin-proposal-optional-chaining",
+              "@babel/plugin-transform-runtime",
             ],
           },
         },
@@ -91,6 +93,7 @@ module.exports = {
     //   ],
     //   filename: "assets/font.css",
     // }),
+    new Dotenv(),
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, "../public/index.html"),
       inject: true,
